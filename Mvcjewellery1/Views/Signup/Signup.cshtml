@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        SignUp
+    </title>
+    <link href="~/Styles/Signup1.css" rel="stylesheet">
+</head>
+<body>
+    <div class="signup-form">
+        <h1>SignUp Form</h1>
+        <form action='#' method="post">
+            <label> <b>Name</b></label>
+            <input type="text" placeholder="Enter Your Name" name="Name" id="Name" required />
+            <label> <b>Emailid</b></label>
+            <input type="text" placeholder="Enter Emailid" name="Emailid" id="Emailid" required />
+            <label> <b>Contact No</b></label>
+            <input type="text" placeholder="Enter Contact No" name="Contact No" id="Contact No" required />
+            <label> <b>Address</b></label>
+            <input type="text" placeholder="Enter Address" name="Address" id="Address" required />
+            <label> <b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="Username" id="Username" required />
+            <label> <b>Password</b></label>
+            <input type="Password" placeholder="Enter Password" name="password" id="password" required />
+            <button class="submit" type="submit"><a href=@Url.Action("Login","Login")>SignUp</a></button>
+        </form>
+    </div>
+</body>
+
+</html>

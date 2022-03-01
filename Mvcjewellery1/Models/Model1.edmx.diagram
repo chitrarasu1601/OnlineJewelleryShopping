@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a8b4a8cf89094bb897b8b0097c09c09f" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="MvcJewelleryModel.Category" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcJewelleryModel.Customer" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcJewelleryModel.Detail" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcJewelleryModel.MyOrder" Width="1.5" PointX="9.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcJewelleryModel.Payment_Details" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcJewelleryModel.Product" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="MvcJewelleryModel.FK_MyOrder_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcJewelleryModel.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcJewelleryModel.FK_MyOrder_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcJewelleryModel.FK_Details_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcJewelleryModel.FK_MyOrder_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcJewelleryModel.FK_Payment_Details_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcJewelleryModel.FK_MyOrder_Payment_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcJewelleryModel.FK_MyOrder_Product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

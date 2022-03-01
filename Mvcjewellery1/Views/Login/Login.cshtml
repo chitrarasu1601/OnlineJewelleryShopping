@@ -1,0 +1,24 @@
+﻿@model Mvcjewellery1.Models.Customer
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Styles/Login.css" rel="stylesheet" />
+
+    <div class="login-form">
+        <h1>Login Form</h1>
+        <form action=@Url.Action("Login","Login") method="post">
+            <label> <b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="UserName" id="Username" required />
+            <span style="color:red">@ViewData["NoUSer"]</span>
+            <br>
+            <label> <b>Password</b></label>
+            <input type="Password" placeholder="Enter Password" name="Password" id="password" required />
+            <span style="color:red">@ViewData["WrongPass"]</span>
+            <button class="submit" type="submit">Login</button>
+            <div class="text">
+                <a href='#'>Don't have an account? Sign Up</a>
+            </div>
+        </form>
+    </div>
+

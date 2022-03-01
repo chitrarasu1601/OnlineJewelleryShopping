@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcJewelleryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category_Name" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
+    <Property Name="Email_ID" Type="nchar" MaxLength="50" />
+    <Property Name="Contact_NO" Type="nchar" MaxLength="20" />
+    <Property Name="Address" Type="nchar" MaxLength="100" />
+    <Property Name="UserName" Type="nchar" MaxLength="50" />
+    <Property Name="Password" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Details">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Product_Name" Type="nchar" MaxLength="50" />
+    <Property Name="Description" Type="nchar" MaxLength="100" />
+    <Property Name="Price" Type="float" />
+    <Property Name="discount" Type="float" />
+    <Property Name="Total" Type="float" />
+    <Property Name="Product_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="MyOrder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Product_ID" Type="int" />
+    <Property Name="Category_ID" Type="int" />
+    <Property Name="Details_ID" Type="int" />
+    <Property Name="Payment_ID" Type="int" />
+    <Property Name="Customer_ID" Type="int" />
+    <Property Name="Amount" Type="float" />
+  </EntityType>
+  <EntityType Name="Payment_Details">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Total" Type="float" />
+    <Property Name="Detail_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category_ID" Type="int" />
+  </EntityType>
+  <Association Name="FK_Details_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Details" Type="Self.Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Details">
+        <PropertyRef Name="Product_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyOrder_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="MyOrder" Type="Self.MyOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MyOrder">
+        <PropertyRef Name="Category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyOrder_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="MyOrder" Type="Self.MyOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MyOrder">
+        <PropertyRef Name="Customer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyOrder_Details">
+    <End Role="Details" Type="Self.Details" Multiplicity="0..1" />
+    <End Role="MyOrder" Type="Self.MyOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Details">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MyOrder">
+        <PropertyRef Name="Details_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyOrder_Payment_Details">
+    <End Role="Payment_Details" Type="Self.Payment_Details" Multiplicity="0..1" />
+    <End Role="MyOrder" Type="Self.MyOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment_Details">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MyOrder">
+        <PropertyRef Name="Payment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyOrder_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="MyOrder" Type="Self.MyOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MyOrder">
+        <PropertyRef Name="Product_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Details_Details">
+    <End Role="Details" Type="Self.Details" Multiplicity="0..1" />
+    <End Role="Payment_Details" Type="Self.Payment_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Details">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Payment_Details">
+        <PropertyRef Name="Detail_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MvcJewelleryModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Details" EntityType="Self.Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MyOrder" EntityType="Self.MyOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment_Details" EntityType="Self.Payment_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Details_Product" Association="Self.FK_Details_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Details" EntitySet="Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyOrder_Category" Association="Self.FK_MyOrder_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="MyOrder" EntitySet="MyOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyOrder_Customer" Association="Self.FK_MyOrder_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="MyOrder" EntitySet="MyOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyOrder_Details" Association="Self.FK_MyOrder_Details">
+      <End Role="Details" EntitySet="Details" />
+      <End Role="MyOrder" EntitySet="MyOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyOrder_Payment_Details" Association="Self.FK_MyOrder_Payment_Details">
+      <End Role="Payment_Details" EntitySet="Payment_Details" />
+      <End Role="MyOrder" EntitySet="MyOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyOrder_Product" Association="Self.FK_MyOrder_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="MyOrder" EntitySet="MyOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Details_Details" Association="Self.FK_Payment_Details_Details">
+      <End Role="Details" EntitySet="Details" />
+      <End Role="Payment_Details" EntitySet="Payment_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
